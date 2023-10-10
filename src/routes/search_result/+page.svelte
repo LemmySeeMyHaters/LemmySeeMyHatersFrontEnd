@@ -20,12 +20,18 @@
 	let page_no = 0;
 	const searchClick = () => {
 		lemmyVotesParam.update((val) => {
-			return { ...val, votes_filter: votesFilter, sort_by: sortBy, username: undefined };
+			return {
+				...val,
+				votes_filter: votesFilter,
+				sort_by: sortBy,
+				username: undefined,
+				offset: '0'
+			};
 		});
 
 		if (username !== '') {
 			lemmyVotesParam.update((val) => {
-				return { ...val, username: username, offset: '0'};
+				return { ...val, username: username, offset: '0' };
 			});
 		}
 		invalidateAll();
@@ -54,7 +60,6 @@
 			});
 			invalidateAll();
 		}
-		console.log(lvp);
 	};
 </script>
 
@@ -92,7 +97,7 @@
 		<p style="font-weight: bold;">
 			URL: <a href={lvp.url} style="color: white; text-decoration: none;">{lvp.url}</a> <br /><br />
 			Upvotes: {votesResponse.upvotes}, Downvotes: {votesResponse.downvotes}, Upvote Ratio:
-			{(voteRatio).toFixed(2)}
+			{voteRatio.toFixed(2)}
 		</p>
 	</div>
 
