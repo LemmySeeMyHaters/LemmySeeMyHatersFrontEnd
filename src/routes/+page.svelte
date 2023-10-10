@@ -1,18 +1,26 @@
 <script lang="ts">
-	import Header from "./header.svelte";
+	import { goto } from '$app/navigation';
+	import { lemmyVotesParam } from '$lib/models';
+	import { browser } from '$app/environment';
 
-	let search_query = "";
+	if (browser) {
+		localStorage.clear();
+	}
 
+	let search_query = '';
 	const search_action = () => {
-		if (!search_query.startsWith("https://")) {
+		if (!search_query.startsWith('https://')) {
 			alert("URL must start with 'https://'");
-			search_query = "";
+			search_query = '';
 			return;
 		}
+		lemmyVotesParam.update((val) => {
+			return { ...val, url: search_query };
+		});
+		goto('/search_result');
 	};
 </script>
 
-<Header />
 <main>
 	<div style="grid-area: topbar;" />
 
@@ -33,12 +41,7 @@
 					placeholder="https://lemmykekw.xyz/post/1"
 					bind:value={search_query}
 				/>
-				<button
-					class="search-button"
-					on:click|preventDefault={search_action}
-				>
-					Search</button
-				>
+				<button class="search-button" on:click|preventDefault={search_action}> Search</button>
 			</form>
 		</div>
 	</div>
@@ -52,8 +55,8 @@
 	main {
 		display: grid;
 		grid-template-areas:
-			"ads content sidebar"
-			"footer footer footer";
+			'ads content sidebar'
+			'footer footer footer';
 		grid-template-columns: 1fr 3fr 1fr;
 		grid-template-rows: 75vh 100px;
 		height: 100vh;
