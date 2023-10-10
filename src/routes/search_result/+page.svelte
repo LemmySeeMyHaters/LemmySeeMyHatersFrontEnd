@@ -26,7 +26,7 @@
 
 		if (username !== '') {
 			lemmyVotesParam.update((val) => {
-				return { ...val, username: username };
+				return { ...val, username: username, offset: '0'};
 			});
 		}
 		invalidateAll();
