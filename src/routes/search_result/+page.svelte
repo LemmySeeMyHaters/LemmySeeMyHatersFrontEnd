@@ -121,7 +121,9 @@
 
 	<div>
 		<p>
-			Showing {parseInt(lvp.offset) + 1} to {votesResponse.next_offset} of {votesResponse.total_count}
+			Showing {parseInt(lvp.offset) + 1} to {votesResponse.next_offset === null
+				? votesResponse.total_count
+				: votesResponse.next_offset} of {votesResponse.total_count}
 			Entries
 		</p>
 		<button class="custom-btn" on:click={updateOffset}>Previous</button>
