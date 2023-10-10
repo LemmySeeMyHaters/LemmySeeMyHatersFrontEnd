@@ -91,8 +91,8 @@
 	<div>
 		<p style="font-weight: bold;">
 			URL: <a href={lvp.url} style="color: white; text-decoration: none;">{lvp.url}</a> <br /><br />
-			Upvotes: {votesResponse.upvotes}, Downvotes: {votesResponse.downvotes}, Upvote Percentage:
-			{(voteRatio * 100).toFixed(2)}%
+			Upvotes: {votesResponse.upvotes}, Downvotes: {votesResponse.downvotes}, Upvote Ratio:
+			{(voteRatio).toFixed(2)}
 		</p>
 	</div>
 
