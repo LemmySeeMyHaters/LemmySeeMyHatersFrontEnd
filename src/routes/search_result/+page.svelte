@@ -17,7 +17,6 @@
 	let votesFilter = 'All';
 	let sortBy = 'datetime_desc';
 	let username = '';
-	let page_no = 0;
 	const searchClick = () => {
 		lemmyVotesParam.update((val) => {
 			return {
