@@ -7,8 +7,7 @@
 
 	export let data;
 	$: votesResponse = data.votesResponse;
-	$: voteRatio =
-		votesResponse.total_count > 0 ? votesResponse.upvotes / votesResponse.total_count : 0;
+	$: voteRatio = votesResponse.upvotes / (votesResponse.upvotes + votesResponse.downvotes);
 
 	function formatUnixTimestamp(unixTimestamp: number): string {
 		const date = new Date(unixTimestamp * 1000);
