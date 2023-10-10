@@ -10,7 +10,12 @@ export async function load({ fetch }) {
         prepareQuery.delete('username');
     }
 
-    const prepared_url = `https://lemmyvotes.info/votes/post?${prepareQuery.toString()}`;
+    let prepared_url;
+    if (lvp.url.includes("/post/")) {
+        prepared_url = `https://lemmyvotes.info/votes/post?${prepareQuery.toString()}`;
+    } else {
+        prepared_url = `https://lemmyvotes.info/votes/comment?${prepareQuery.toString()}`;
+    }
     let votesResponse: VotesResponse;
     if (browser) {
         votesResponse = await fetchVotes(prepared_url, fetch);
